@@ -11,8 +11,8 @@
     "on-scroll-up": "hyprctl dispatch workspace r-1",
     "on-scroll-down": "hyprctl dispatch workspace r+1",
     "on-click": "activate",
-    "active-only": false,
-    "all-outputs": true,
+    "active-only": true,
+    "all-outputs": false,
     "format": "{}",
     "format-icons": {
       "urgent": "",
@@ -54,13 +54,6 @@
     "separate-outputs": true
   },
 
-  // ML4W Welcome App
-  "custom/ml4w-welcome": {
-    "on-click": "flatpak run com.ml4w.sidebar",
-    "format": " ",
-    "tooltip-format": "Open ML4W Sidebar App"
-  },
-
   // Empty
   "custom/empty": {
     "format": ""
@@ -69,7 +62,7 @@
     // Tools
   "custom/tools": {
     "format": "",
-    "tooltip-format": "Tools"
+  "tooltip-format": "Tools"
   },
 
   // Cliphist
@@ -139,9 +132,10 @@
   // Rofi Application Launcher
   "custom/appmenu": {
     // START APPS LABEL
-    "format": "Apps",
+    "format": "MENU",
     // END APPS LABEL
-    "on-click": "sleep 0.2;pkill rofi || rofi -show drun -replace",
+    // "on-click": "sleep 0.2;pkill rofi || rofi -show drun -replace",
+    "on-click": "sleep 0.2; walker",
     "on-click-right": "~/.config/hypr/scripts/keybindings.sh",
     "tooltip-format": "Left: Open the application launcher\nRight: Show all keybindings"
   },
