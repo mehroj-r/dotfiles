@@ -1,0 +1,231 @@
+# =============================================================================
+# Git Aliases for .bashrc
+# Add these to your ~/.bashrc file
+# =============================================================================
+
+# Basic Git Operations
+alias g='git'
+alias gi='git init'
+alias gcl='git clone'
+alias gs='git status'
+alias gss='git status -s'
+alias ga='git add'
+alias gaa='git add --all'
+alias gap='git add --patch'
+alias gau='git add --update'
+
+# Commit Operations
+alias gc='git commit'
+alias gcm='git commit -m'
+alias gca='git commit --amend'
+alias gcan='git commit --amend --no-edit'
+alias gcam='git commit -am'
+alias gcem='git commit --allow-empty -m'
+alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify --no-gpg-sign -m "--wip-- [skip ci]"'
+
+# Branch Operations
+alias gb='git branch'
+alias gba='git branch -a'
+alias gbd='git branch -d'
+alias gbD='git branch -D'
+alias gbnm='git branch --no-merged'
+alias gbr='git branch --remote'
+alias ggsup='git branch --set-upstream-to=origin/$(git_current_branch)'
+alias gbda='git branch --no-color --merged | command grep -vE "^(\+|\*|\s*(master|main|develop|dev)\s*$)" | command xargs -n 1 git branch -d'
+
+# Checkout Operations
+alias gco='git checkout'
+alias gcb='git checkout -b'
+alias gcom='git checkout master'
+alias gcod='git checkout develop'
+alias gcmain='git checkout main'
+alias gcp='git cherry-pick'
+alias gcpa='git cherry-pick --abort'
+alias gcpc='git cherry-pick --continue'
+
+# Fetch, Pull, Push Operations
+alias gf='git fetch'
+alias gfa='git fetch --all --prune'
+alias gfo='git fetch origin'
+alias gl='git pull'
+alias glo='git pull origin'
+alias glom='git pull origin master'
+alias glod='git pull origin develop'
+alias glomain='git pull origin main'
+alias glr='git pull --rebase'
+alias glro='git pull --rebase origin'
+alias gp='git push'
+alias gpd='git push --dry-run'
+alias gpf='git push --force-with-lease'
+alias gpf!='git push --force'
+alias gpoat='git push origin --all && git push origin --tags'
+alias gpu='git push upstream'
+alias gpv='git push -v'
+alias gpsu='git push --set-upstream origin'
+
+# Merge Operations
+alias gm='git merge'
+alias gma='git merge --abort'
+alias gmc='git merge --continue'
+alias gmom='git merge origin/master'
+alias gmod='git merge origin/develop'
+alias gmomain='git merge origin/main'
+alias gmtl='git mergetool --no-prompt'
+alias gmtlvim='git mergetool --no-prompt --tool=vimdiff'
+
+# Rebase Operations
+alias gr='git rebase'
+alias gra='git rebase --abort'
+alias grc='git rebase --continue'
+alias gri='git rebase -i'
+alias grs='git rebase --skip'
+alias grh='git reset'
+alias grhh='git reset --hard'
+alias groh='git reset origin/$(git_current_branch) --hard'
+alias grbi='git rebase -i'
+
+# Log and History
+alias glog='git log --oneline --decorate --graph'
+alias gloga='git log --oneline --decorate --graph --all'
+alias glogp='git log --pretty=format:"%h %s" --graph'
+alias glol='git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'''
+alias glola='git log --graph --pretty='\''%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'' --all'
+alias glogs='git log --stat'
+alias glogd='git log --patch'
+alias gcount='git shortlog -sn'
+
+# Diff Operations
+alias gd='git diff'
+alias gdca='git diff --cached'
+alias gdcw='git diff --cached --word-diff'
+alias gds='git diff --staged'
+alias gdt='git diff-tree --no-commit-id --name-only -r'
+alias gdw='git diff --word-diff'
+alias gdh='git diff HEAD'
+alias gdh1='git diff HEAD~1'
+
+# Stash Operations
+alias gsta='git stash push'
+alias gstaa='git stash apply'
+alias gstc='git stash clear'
+alias gstd='git stash drop'
+alias gstl='git stash list'
+alias gstp='git stash pop'
+alias gsts='git stash show --text'
+alias gstall='git stash --all'
+alias gstu='git stash --include-untracked'
+
+# Remote Operations
+alias grv='git remote -v'
+alias grmv='git remote rename'
+alias grrm='git remote remove'
+alias grset='git remote set-url'
+alias grup='git remote update'
+alias grso='git remote show origin'
+
+# Tag Operations
+alias gt='git tag'
+alias gta='git tag -a'
+alias gts='git tag -s'
+alias gtv='git tag | sort -V'
+alias gtl='git tag --list'
+
+# Reset Operations
+alias gundo='git reset HEAD~1 --mixed'
+alias gunwip='git log -n 1 | grep -q -c "\-\-wip\-\-" && git reset HEAD~1'
+alias gclean='git clean -id'
+alias gpristine='git reset --hard && git clean -dffx'
+
+# Show Operations
+alias gsh='git show'
+alias gsps='git show --pretty=short --show-signature'
+
+# Worktree Operations
+alias gwt='git worktree'
+alias gwta='git worktree add'
+alias gwtls='git worktree list'
+alias gwtmv='git worktree move'
+alias gwtrm='git worktree remove'
+
+# Advanced/Complex Operations
+alias gignore='git update-index --assume-unchanged'
+alias gunignore='git update-index --no-assume-unchanged'
+alias gignored='git ls-files -v | grep "^[[:lower:]]"'
+alias gfg='git ls-files | grep'
+alias gclone='git clone --recurse-submodules'
+alias gbage='git for-each-ref --format="%(committerdate) %09 %(authorname) %09 %(refname)" | sort -k5n -k2M -k3n -k4n'
+
+# Submodule Operations
+alias gsm='git submodule'
+alias gsmi='git submodule init'
+alias gsmu='git submodule update'
+alias gsmui='git submodule update --init'
+alias gsmur='git submodule update --remote'
+
+# Bisect Operations
+alias gbs='git bisect'
+alias gbss='git bisect start'
+alias gbsg='git bisect good'
+alias gbsb='git bisect bad'
+alias gbsr='git bisect reset'
+
+# Archive Operations
+alias gtar='git archive'
+alias gzip='git archive --format=tar.gz'
+
+# Maintenance Operations
+alias gprune='git remote prune origin'
+alias gcleanup='git remote prune origin && git gc && git clean -df && git stash clear'
+
+# Config shortcuts
+alias gcf='git config'
+alias gcfl='git config --list'
+alias gcfg='git config --global'
+alias gcfe='git config --edit'
+alias gcfge='git config --global --edit'
+
+# Helper function to get current branch (add this to your .bashrc too)
+git_current_branch() {
+  git rev-parse --abbrev-ref HEAD 2>/dev/null
+}
+
+# Additional useful functions
+gcsm() {
+  git commit -S -m "$*"
+}
+
+gdv() {
+  git diff -w "$@" | view -
+}
+
+# Quick commit with current timestamp
+gnow() {
+  git commit -m "$(date)"
+}
+
+# Open GitHub/GitLab page for current repo
+ghpage() {
+  local url=$(git config --get remote.origin.url)
+  if [[ $url == *"github.com"* ]]; then
+    url=${url%.git}
+    url=${url/git@github.com:/https://github.com/}
+    xdg-open "$url" 2>/dev/null || open "$url" 2>/dev/null
+  fi
+}
+
+# Show git aliases
+galias() {
+  alias | grep '^g' | sed "s/^\([^=]*\)=\(.*\)/\1 => \2/" | sed "s/['|\']//g" | sort
+}
+
+# =============================================================================
+# Usage Instructions:
+# 1. Add these aliases to your ~/.bashrc file
+# 2. Run: source ~/.bashrc  (or restart your terminal)
+# 3. Use any of the aliases above instead of full git commands
+# 
+# Examples:
+# - Instead of 'git status' use 'gs'
+# - Instead of 'git commit -m "message"' use 'gcm "message"'
+# - Instead of 'git push origin main' use 'gp origin main'
+# =============================================================================
