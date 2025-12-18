@@ -8,6 +8,10 @@ eval "$(uv generate-shell-completion bash)"
 # Django
 alias dj="python manage.py"
 
+# Linux
+alias pacman_add="sudo pacman -S"
+alias yay_add="yay -S"
+
 # Git
 . "$HOME/.git-aliases"
 
